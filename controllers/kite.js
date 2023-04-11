@@ -19,3 +19,14 @@ res.send('NOT IMPLEMENTED: kite delete DELETE ' + req.params.id);
 exports.kite_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: kite update PUT' + req.params.id);
 };
+exports.kite_list = async function(req, res) {
+    try{
+    thekite = await kite.find();
+    res.send(thekite);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
