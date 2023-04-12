@@ -2,10 +2,11 @@ extends layout
 
 block content
   h1= title
-  - let results = [{kite_color:"yellow",kite_quality:"good",kite_cost:"$5"},{kite_color:"red",kite_quality:better,kite_cost:"$3"},{kite_color:"green",kite_quality:"best",kite_cost:"$8"}]
+  //- - let results = [{kite_color:"yellow",kite_quality:"good",kite_cost:"$5"},{kite_color:"red",kite_quality:better,kite_cost:"$3"},{kite_color:"green",kite_quality:"best",kite_cost:"$8"}]
+  - let result = results
   div(class="container-fluid")
     div(class="row")
-      each item,index in results
+      each item,index in result
         div(class="col-sm-2",onClick=`buy(${index})`)
           p color is #{item.kite_color}
           p quality is #{item.kite_quality}
