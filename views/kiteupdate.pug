@@ -1,0 +1,42 @@
+extends layout
+block content
+    h1= title
+     if (toShow == null)
+     h2 No instance to update 
+     else
+        - let kite_id = toShow._id
+        - let kite_color = toShow.kite_color
+        - let kite_quality = toShow.kite_quality
+        - let kite_cost = toShow.kite_cost
+        div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{kite_id}
+        - let actionid = "/resource/kite/" + kite_id
+        form(id='kiteForm', action= actionid, method="PUT")
+        div.form-group
+            label.kiteAttr(for='kite_color') kite color
+            input#kite_color(type='text', name='kite_color', value= kite_color )
+        div.form-group
+            label.kiteAttr(for='kite_quality') kite_quality
+            input#kite_quality(type='text', name='kite_quality', value= kite_quality )
+        div.form-group
+            label.kiteAttr(for='kite_cost') kite cost
+            input#kite_cost(type='number', name='kite_cost', value= kite_cost )
+        input(type="submit")
+        script.
+        document.forms['kiteForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Update succeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error )
+        });
+        });

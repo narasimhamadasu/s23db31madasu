@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  - let kite_id = toShow._id
+  - let kite_color = toShow.kite_color
+  - let kite_quality = toShow.kite_quality
+  - let kite_cost = toShow.kite_cost
+  div
+    div.row
+        div(class='kiteAttr mr-3') kite id is:
+        div #{kite_id}
+    div.row
+        div(class='kiteAttr mr-3') kite color is:
+        div #{kite_color}
+    div.row
+        div(class='kiteAttr mr-3') kite quality is:
+        div #{kite_quality}
+    div.row
+        div(class='kiteAttr mr-3') kite cost is:
+        div #{kite_cost}
