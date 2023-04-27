@@ -153,8 +153,8 @@ res.send(`{'error': '${err}'}`);
 exports.kite_update_Page = async function(req, res) {
     console.log("update view for item "+req.query.id)
     try{
-    let result = await Costume.findById(req.query.id)
-    res.render('costumeupdate', { title: 'Costume Update', toShow: result });
+    let result = await kite.findById(req.query.id)
+    res.render('kiteupdate', { title: 'kite Update', toShow: result });
     }
     catch(err){
     res.status(500)

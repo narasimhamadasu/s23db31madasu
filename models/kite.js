@@ -1,8 +1,9 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+
 const kiteSchema = mongoose.Schema({
-kite_color: String,
-kite_quality: String,
-kite_cost: Number
-})
-module.exports = mongoose.model("kite",
-kiteSchema)
+  kite_color:  {type:String , required: true, minLength:[1,'color']},
+  kite_quality: { type:String , required: true, maxLength:[8] },
+  kite_cost: {type: Number, required: true,min: 0, max: 600}, 
+});
+
+module.exports = mongoose.model("kite", kiteSchema);

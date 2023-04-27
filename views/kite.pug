@@ -2,20 +2,26 @@ extends layout
 
 block content
   h1= title
-  //- - let results = [{kite_color:"yellow",kite_quality:"good",kite_cost:"$5"},{kite_color:"red",kite_quality:better,kite_cost:"$3"},{kite_color:"green",kite_quality:"best",kite_cost:"$8"}]
-  - let result = results
+  
+  - let result =results
+  - let create = `dispatch(\"/kite/create\")`
+  button.btn( class="btn-info", onclick= create) Add new kites
   div(class="container-fluid")
-    div(class="row")
-      each item,index in result
-        div(class="col-sm-2",onClick=`buy(${index})`)
-          p color is #{item.kite_color}
-          p quality is #{item.kite_quality}
-          p cost is #{item.kite_cost}
+  div(class="row")
+   each i,index  in result
+     - let destination = `dispatch(\"/kite/update?id=${result._id}\")`
+     - let detail = `dispatch(\"/kite/detail/?id=${result._id}")`
+     - let deletesoaps = `dispatch(\"/kite/delete/?id=${result._id}")`      
+     div(class="col-sm-2" onclick =`buy(${index})`) #{i.kite_color}, #{i.kite_quality}, #{i.kite_cost}
+     button.btn( class="btn-primary ml-1", onclick= destination) Update
+     button.btn( class="btn-success", onclick= detail) Details
+     button.btn( class="btn-dark", onclick= deletesoaps) Delete
   script.
-    function buy(thing) {
-      thing = thing+1;
-      alert(`You Purchased Item ${thing}`);
-    }
-          
-         
-    
+   function dispatch(path){
+    window.location.href=path
+   }
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
